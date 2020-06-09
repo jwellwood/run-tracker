@@ -1,2 +1,11 @@
 export const HOME = '/';
 export const ABOUT = '/about';
+export const SIGN_IN = '/sign_in';
+export const REGISTER = '/register';
+export const RESET_PASSWORD = '/reset-password';
+export const PROFILE = '/profile';
+export const EDIT_PROFILE = '/edit_profile';
+export const ALL_RECORDS = '/records';
+export const RECORD = '/records:id';
+export const ADD_RECORD = '/add_record';
+export const EDIT_RECORD = '/records/:id/edit';
