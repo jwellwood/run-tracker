@@ -1,10 +1,27 @@
 const mongoose = require('mongoose');
 
 const profileSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    maxlength: 20,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+  },
+  profileImage: {
+    url: {
+      type: String,
+      default: '',
+    },
+    publicId: {
+      type: String,
+      default: 0,
+    },
+  },
+  hasDarkTheme: {
+    type: Boolean,
+    default: false,
+  },
+  hasMetric: {
+    type: Boolean,
+    default: true,
   },
 });
 

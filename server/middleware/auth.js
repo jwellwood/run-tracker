@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const { NO_AUTH_TOKEN_MESSAGE } = require('../messages');
+const { NO_AUTH_TOKEN_MESSAGE } = require('../messages/registration-messages');
 
 module.exports = function (req, res, next) {
   const token = req.header('x-auth-token');

@@ -1,10 +1,19 @@
 const mongoose = require('mongoose');
 
 const recordSchema = new mongoose.Schema({
-  name: {
+  dateAndTime: {
+    type: Date,
+    required: true,
+  },
+  distance: {
     type: String,
     required: true,
-    maxlength: 20,
+    default: 0,
+  },
+  time: {
+    type: String,
+    required: true,
+    default: '0:00',
   },
 });
 

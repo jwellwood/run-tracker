@@ -10,9 +10,9 @@ const {
   USERNAME_ERROR_MESSAGE,
   EMAIL_ERROR_MESSAGE,
   PASSWORD_ERROR_MESSAGE,
-  SERVER_ERROR_MESSAGE,
   USER_ALREADY_EXISTS_MESSAGE,
-} = require('../messages');
+} = require('../messages/registration-messages');
+const { SERVER_ERROR_MESSAGE } = require('../messages/server-messages');
 const User = require('../models/User.model');
 
 require('dotenv').config();

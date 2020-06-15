@@ -10,11 +10,11 @@ const auth = require('../middleware/auth');
 const User = require('../models/User.model');
 const { check, validationResult } = require('express-validator');
 const {
-  SERVER_ERROR_MESSAGE,
   PASSWORD_LOGIN_ERROR_MESSAGE,
   INVALID_LOGIN_ATTEMPT,
   EMAIL_ERROR_MESSAGE,
-} = require('../messages');
+} = require('../messages/registration-messages');
+const { SERVER_ERROR_MESSAGE } = require('../messages/server-messages');
 
 // GET
 // route  api/auth
