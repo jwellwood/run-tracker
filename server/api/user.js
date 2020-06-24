@@ -6,20 +6,19 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
+require('dotenv').config();
+// Models
+const User = require('../models/User.model');
+// Messages
 const {
+  SERVER_ERROR_MESSAGE,
   USERNAME_ERROR_MESSAGE,
   EMAIL_ERROR_MESSAGE,
   PASSWORD_ERROR_MESSAGE,
   USER_ALREADY_EXISTS_MESSAGE,
-} = require('../messages/registration-messages');
-const { SERVER_ERROR_MESSAGE } = require('../messages/server-messages');
-const User = require('../models/User.model');
+} = require('../messages');
 
-require('dotenv').config();
-
-// POST
-// route  api/user
-// desc   register a user
+// POST | api/user | register a user
 
 router.post(
   '/',
@@ -51,7 +50,7 @@ router.post(
       jwt.sign(
         payload,
         process.env.JWT_SECRET,
-        { expiresIn: 3600 },
+        { expiresIn: 3600000 },
         (err, token) => {
           if (err) {
             throw err;

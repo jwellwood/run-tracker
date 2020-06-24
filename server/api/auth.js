@@ -6,19 +6,20 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const auth = require('../middleware/auth');
-const User = require('../models/User.model');
 const { check, validationResult } = require('express-validator');
+// Middleware
+const auth = require('../middleware/auth');
+// Models
+const User = require('../models/User.model');
+// Messages
 const {
   PASSWORD_LOGIN_ERROR_MESSAGE,
   INVALID_LOGIN_ATTEMPT,
   EMAIL_ERROR_MESSAGE,
-} = require('../messages/registration-messages');
-const { SERVER_ERROR_MESSAGE } = require('../messages/server-messages');
+  SERVER_ERROR_MESSAGE,
+} = require('../messages');
 
-// GET
-// route  api/auth
-// desc   get auth
+// GET  | api/auth | get auth status
 
 router.get('/', auth, async (req, res) => {
   try {
@@ -30,9 +31,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST
-// route  api/auth
-// desc   authenticate a user for sign in
+// POST | api/auth | authenticate a user (sign in)
 
 router.post(
   '/',
@@ -67,7 +66,7 @@ router.post(
       jwt.sign(
         payload,
         process.env.JWT_SECRET,
-        { expiresIn: 3600 },
+        { expiresIn: 36000000 },
         (err, token) => {
           if (err) {
             throw err;
