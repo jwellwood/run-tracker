@@ -1,19 +1,28 @@
+// CONTENTS:
+// GET     | api/profile/auth_user          | get profile of current user
+// POST    | api/profile                    | Create or update profile
+// GET     | api/profile                    | Get all profiles
+// GET     | api/profile/user/:user_id      | Get profile by id
+// DELETE  | api/profile                    | Delete profile and user
+
 const express = require('express');
 const router = express.Router();
+const { check, validationResult } = require('express-validator');
+// Middleware
 const auth = require('../middleware/auth');
-const { SERVER_ERROR_MESSAGE } = require('../messages/server-messages');
+// Models
+const Profile = require('../models/Profile.model');
+const User = require('../models/User.model');
+// Messages
 const {
   NO_PROFILE_EXISTS_MESSAGE,
   THEME_IS_REQUIRED,
   PROFILE_NOT_FOUND,
   PROFILE_DELETED_MESSAGE,
-} = require('../messages/profile-messages');
-const Profile = require('../models/Profile.model');
-const User = require('../models/User.model');
-const { check, validationResult } = require('express-validator');
+  SERVER_ERROR_MESSAGE,
+} = require('../messages');
 
-// route  api/profile/auth_user
-// desc   get profile of current user
+// GET | api/profile/auth | get profile of current user
 
 router.get('/auth_user', auth, async (req, res) => {
   try {
@@ -29,12 +38,11 @@ router.get('/auth_user', auth, async (req, res) => {
   }
 });
 
-// route  api/profile
-// desc   Create or update profile
+// POST | api/profile | Create or update profile
 
 router.post(
   '/',
-  [auth, check('hasDarkTheme', THEME_IS_REQUIRED)],
+  [auth, check('hasDarkTheme', THEME_IS_REQUIRED).not().isEmpty()],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -75,9 +83,7 @@ router.post(
   }
 );
 
-// route  api/profile
-// desc   get all profiles
-// TODO Add admin middleware
+// GET | api/profile | Get all profiles
 
 router.get('/', async (req, res) => {
   try {
@@ -92,9 +98,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// route  api/profile/user/:user_id
-// desc   get single profile by ID
-// TODO Add admin middleware
+// GET | api/profile/user/:user_id | Get profile by id
 
 router.get('/user/:user_id', async (req, res) => {
   try {
@@ -114,8 +118,7 @@ router.get('/user/:user_id', async (req, res) => {
   }
 });
 
-// route  api/profile
-// desc   delete profile, user and records
+// DELETE | api/profile | Delete profile and user
 
 router.delete('/', auth, async (req, res) => {
   try {
