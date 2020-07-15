@@ -39,7 +39,7 @@ router.post(
       let user = await User.findOne({ email });
       // check if user exists
       if (user) {
-        return res.status(400).send(USER_ALREADY_EXISTS_MESSAGE);
+        return res.status(400).json({ msg: USER_ALREADY_EXISTS_MESSAGE });
       }
       user = new User({ username, email, password });
       // encrypt password

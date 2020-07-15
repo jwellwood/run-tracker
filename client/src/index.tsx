@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRoutes from './routes/AppRoutes';
 import * as serviceWorker from './serviceWorker';
-// import { Helmet } from 'react-helmet';
-import AppTheme from './AppTheme';
 import { Provider } from 'react-redux';
 import store from './store';
+// import { Helmet } from 'react-helmet';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,9 +15,7 @@ ReactDOM.render(
       <meta name='keywords' content='run, running, fitness, progress' />
     </Helmet> */}
     <Provider store={store}>
-      <AppTheme>
-        <AppRoutes />
-      </AppTheme>
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
