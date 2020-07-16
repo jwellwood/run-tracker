@@ -10,36 +10,34 @@ require('dotenv').config();
 // Models
 const User = require('../models/User.model');
 // Messages
-const {
-  SERVER_ERROR_MESSAGE,
-  USERNAME_ERROR_MESSAGE,
-  EMAIL_ERROR_MESSAGE,
-  PASSWORD_ERROR_MESSAGE,
-  USER_ALREADY_EXISTS_MESSAGE,
-} = require('../messages');
+const { registration, server } = require('../messages');
 
 // POST | api/user | register a user
 
 router.post(
   '/',
   [
-    check('username', USERNAME_ERROR_MESSAGE).not().isEmpty(),
-    check('email', EMAIL_ERROR_MESSAGE).isEmail(),
-    check('password', PASSWORD_ERROR_MESSAGE).isLength({ min: 6 }),
+    check('username', registration.USERNAME_ERROR_MESSAGE).not().isEmpty(),
+    check('email', registration.EMAIL_ERROR_MESSAGE).isEmail(),
+    check('password', registration.PASSWORD_ERROR_MESSAGE).isLength({ min: 6 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      console.log(errors);
-      return res.status(422).json({ errors: errors.array() });
+      console.log(errors.errors);
+      return res.status(400).json({ errors: errors.array() });
     }
     const { username, email, password } = req.body;
     try {
       let user = await User.findOne({ email });
       // check if user exists
       if (user) {
-        return res.status(400).json({ msg: USER_ALREADY_EXISTS_MESSAGE });
+        return res
+          .status(400)
+          .json({
+            errors: [{ msg: registration.USER_ALREADY_EXISTS_MESSAGE }],
+          });
       }
       user = new User({ username, email, password });
       // encrypt password
@@ -62,7 +60,7 @@ router.post(
       );
     } catch (error) {
       console.error(error.message);
-      res.status(500).json({ errors: [{ msg: SERVER_ERROR_MESSAGE }] });
+      res.status(500).json({ errors: [{ msg: server.SERVER_ERROR_MESSAGE }] });
     }
   }
 );

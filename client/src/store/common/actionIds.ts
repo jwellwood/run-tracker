@@ -1,6 +1,7 @@
 export const actionsIds = {
   // App
   SET_ALERT: 'SET_ALERT',
+  REMOVE_ALERT: 'REMOVE_ALERT',
   // User & Auth
   GET_AUTH_STATUS: 'GET_AUTH_STATUS',
   AUTH_USER_LOADED: 'AUTH_USER_LOADED',

@@ -12,12 +12,7 @@ const auth = require('../middleware/auth');
 // Models
 const User = require('../models/User.model');
 // Messages
-const {
-  PASSWORD_LOGIN_ERROR_MESSAGE,
-  INVALID_LOGIN_ATTEMPT,
-  EMAIL_ERROR_MESSAGE,
-  SERVER_ERROR_MESSAGE,
-} = require('../messages');
+const { server, registration } = require('../messages');
 
 // GET  | api/auth | get auth status
 
@@ -27,7 +22,7 @@ router.get('/', auth, async (req, res) => {
     res.json(user);
   } catch (error) {
     console.error(err.message);
-    res.status(500).json({ errors: [{ msg: SERVER_ERROR_MESSAGE }] });
+    res.status(500).json({ errors: [{ msg: server.SERVER_ERROR_MESSAGE }] });
   }
 });
 
@@ -36,8 +31,8 @@ router.get('/', auth, async (req, res) => {
 router.post(
   '/',
   [
-    check('email', EMAIL_ERROR_MESSAGE).isEmail(),
-    check('password', PASSWORD_LOGIN_ERROR_MESSAGE).exists(),
+    check('email', registration.EMAIL_ERROR_MESSAGE).isEmail(),
+    check('password', registration.PASSWORD_LOGIN_ERROR_MESSAGE).exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -50,7 +45,7 @@ router.post(
       if (!user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: INVALID_LOGIN_ATTEMPT }] });
+          .json({ errors: [{ msg: registration.INVALID_LOGIN_ATTEMPT }] });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
@@ -58,7 +53,7 @@ router.post(
       if (!isMatch) {
         return res
           .status(400)
-          .json({ errors: [{ msg: INVALID_LOGIN_ATTEMPT }] });
+          .json({ errors: [{ msg: registration.INVALID_LOGIN_ATTEMPT }] });
       }
 
       const payload = { user: { id: user.id } };
@@ -75,8 +70,7 @@ router.post(
         }
       );
     } catch (error) {
-      console.error(error.message);
-      res.status(500).json({ errors: [{ msg: SERVER_ERROR_MESSAGE }] });
+      res.status(500).json({ errors: [{ msg: server.SERVER_ERROR_MESSAGE }] });
     }
   }
 );
