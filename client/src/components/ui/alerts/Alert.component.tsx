@@ -3,11 +3,13 @@ import { IAlert } from '../../../common/alert.type';
 import { useSelector } from 'react-redux';
 
 const Alert: React.FC = () => {
+  // TODO type this properly
   const alerts = useSelector((state: any) => state.alert);
 
+  const condition: boolean = alerts && alerts.length > 0;
+
   return (
-    alerts &&
-    alerts.length > 0 &&
+    condition &&
     alerts.map((alert: IAlert) => {
       const { msg, type } = alert;
       return (

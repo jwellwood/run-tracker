@@ -10,7 +10,7 @@ export const setAuthToken: Function = (token: string) => {
   }
 };
 
-export const loadUser = () => async (dispatch: any) => {
+export const loadUser = () => async (dispatch: Function) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
