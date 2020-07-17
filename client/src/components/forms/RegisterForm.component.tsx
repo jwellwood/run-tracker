@@ -2,13 +2,13 @@ import React, { useState, FC, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../store/actions/user.action';
 import { IRegisterUser } from '../../common/registration.type';
-import { useHistory, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { PROFILE_ROUTE } from '../../routes';
 import { IUser } from '../../common/user.type';
 
 const RegisterForm: FC = () => {
   const { isAuthenticated } = useSelector((state: IUser) => state.user);
-  const history = useHistory();
+
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     username: '',
@@ -28,7 +28,6 @@ const RegisterForm: FC = () => {
     e.preventDefault();
     const data: IRegisterUser = { ...input };
     dispatch(registerUser(data));
-    history.push('/profile');
   };
 
   if (isAuthenticated) {

@@ -1,7 +1,7 @@
 import { actionsIds } from '../common/actionIds';
 import { IAction } from '../common/action.interface';
 
-interface IAlert {
+export interface IAlert {
   id: string;
   msg: string;
   type: string;

@@ -9,3 +9,4 @@ export const ALL_RECORDS_ROUTE = '/records';
 export const RECORD_ROUTE = '/records:id';
 export const ADD_RECORD_ROUTE = '/add_record';
 export const EDIT_RECORD_ROUTE = '/records/:id/edit';
+export const NOT_FOUND_ROUTE = '**';

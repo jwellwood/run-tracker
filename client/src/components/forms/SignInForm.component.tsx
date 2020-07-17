@@ -2,14 +2,13 @@ import React, { useState, FC, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInUser } from '../../store/actions/user.action';
 import { ISignInUser } from '../../common/registration.type';
-import { useHistory, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { PROFILE_ROUTE } from '../../routes';
 import { IUser } from '../../common/user.type';
 
 const SignInForm: FC = () => {
   const { isAuthenticated } = useSelector((state: IUser) => state.user);
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     email: '',
@@ -28,7 +27,6 @@ const SignInForm: FC = () => {
     e.preventDefault();
     const data: ISignInUser = { ...input };
     dispatch(signInUser(data));
-    history.push('/');
   };
 
   if (isAuthenticated) {
