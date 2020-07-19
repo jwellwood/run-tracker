@@ -1,19 +1,23 @@
 import { IAction } from '../common/action.interface';
 import { actionsIds } from '../common/actionIds';
+import { IProfileState } from '../../common/profile.type';
 
-interface IProfile {}
+const INIT_STATE: IProfileState = {
+  profile: null,
+  loading: true,
+  error: null,
+};
 
-const INIT_STATE: IProfile = {};
-
-export default (state: IProfile = INIT_STATE, action: IAction) => {
+export default (state: IProfileState = INIT_STATE, action: IAction) => {
   const { type, payload } = action;
   switch (type) {
-    case actionsIds.CREATE_UPDATE_USER_PROFILE:
-      return { ...state, payload };
-    case actionsIds.GET_USER_PROFILE:
-      return { ...state, payload };
-    case actionsIds.DELETE_USER_PROFILE:
-      return { ...state, payload };
+    case actionsIds.GET_PROFILE_SUCCESS:
+      return { ...state, profile: payload, error: null, loading: false };
+    case actionsIds.GET_PROFILE_ERROR:
+      return { ...state, profile: null, error: payload, loading: false };
+    case actionsIds.CLEAR_USER_PROFILE:
+      return { ...state, profile: null, error: null, loading: false };
+
     default:
       return state;
   }

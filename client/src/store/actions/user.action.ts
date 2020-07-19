@@ -5,18 +5,13 @@ import { IAlertMessage } from '../../common/alert.type';
 import { setAlert } from './alert.action';
 import { loadUser } from './auth.action';
 import * as message from '../common/messages';
+import { headers_config } from '../common/headers';
 
 export const registerUser = (data: IRegisterUser) => async (
   dispatch: Function
 ) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
   try {
-    const res = await axios.post('/api/user', data, config);
+    const res = await axios.post('/api/user', data, headers_config);
     dispatch({
       type: actionsIds.REGISTER_USER_SUCCESS,
       payload: res.data,
@@ -24,6 +19,7 @@ export const registerUser = (data: IRegisterUser) => async (
     dispatch(setAlert(message.REG_SUCCESS, 'success'));
     dispatch(loadUser());
   } catch (error) {
+    console.log(error);
     const errors = error.response.data.errors;
     if (errors) {
       errors.forEach((error: IAlertMessage) => {
@@ -39,14 +35,8 @@ export const registerUser = (data: IRegisterUser) => async (
 };
 
 export const signInUser = (data: ISignInUser) => async (dispatch: Function) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
   try {
-    const res = await axios.post('/api/auth', data, config);
+    const res = await axios.post('/api/auth', data, headers_config);
     dispatch({
       type: actionsIds.SIGN_IN_USER_SUCCESS,
       payload: res.data,
@@ -54,6 +44,7 @@ export const signInUser = (data: ISignInUser) => async (dispatch: Function) => {
     dispatch(setAlert(message.SIGN_IN_SUCCESS, 'success'));
     dispatch(loadUser());
   } catch (error) {
+    console.log('++++++++++++', error);
     const errors = error.response.data.errors;
     if (errors) {
       errors.forEach((error: IAlertMessage) => {
@@ -72,6 +63,9 @@ export const signOutUser = () => async (dispatch: Function) => {
   try {
     dispatch({
       type: actionsIds.SIGN_OUT_USER,
+    });
+    dispatch({
+      type: actionsIds.CLEAR_USER_PROFILE,
     });
     dispatch(setAlert(message.SIGN_OUT_SUCCESS, 'success'));
   } catch (error) {
