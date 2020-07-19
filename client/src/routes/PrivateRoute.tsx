@@ -9,10 +9,9 @@ const PrivateRoute: React.FC<{
   path: string;
   exact: boolean;
 }> = (props) => {
-  const { isAuthenticated, loading } = useSelector((state: IUser) => {
-    console.log(state);
-    return state.user;
-  });
+  const { isAuthenticated, loading } = useSelector(
+    (state: IUser) => state.user
+  );
 
   return loading ? (
     <div>loading</div>

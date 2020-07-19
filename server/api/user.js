@@ -33,11 +33,9 @@ router.post(
       let user = await User.findOne({ email });
       // check if user exists
       if (user) {
-        return res
-          .status(400)
-          .json({
-            errors: [{ msg: registration.USER_ALREADY_EXISTS_MESSAGE }],
-          });
+        return res.status(400).json({
+          errors: [{ msg: registration.USER_ALREADY_EXISTS_MESSAGE }],
+        });
       }
       user = new User({ username, email, password });
       // encrypt password
@@ -59,8 +57,10 @@ router.post(
         }
       );
     } catch (error) {
-      console.error(error.message);
-      res.status(500).json({ errors: [{ msg: server.SERVER_ERROR_MESSAGE }] });
+      console.error(error);
+      res.status(500).json({
+        errors: [{ msg: server.SERVER_ERROR_MESSAGE }],
+      });
     }
   }
 );

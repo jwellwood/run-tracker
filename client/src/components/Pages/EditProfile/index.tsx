@@ -1,4 +1,5 @@
 import React from 'react';
+import CreateUpdateProfileForm from '../../forms/CreateUpdateProfileForm.component';
 
 const EditProfile = () => {
   return (
@@ -18,6 +19,7 @@ const EditProfile = () => {
           <li>Profile</li>
         </ul>
       </div>
+      <CreateUpdateProfileForm />
     </div>
   );
 };

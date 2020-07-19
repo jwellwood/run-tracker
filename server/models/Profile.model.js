@@ -7,6 +7,10 @@ const profileSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'user',
     },
+    location: {
+      type: String,
+      default: '',
+    },
     profileImage: {
       url: {
         type: String,

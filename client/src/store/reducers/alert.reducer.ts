@@ -1,11 +1,6 @@
 import { actionsIds } from '../common/actionIds';
+import { IAlert } from '../../common/alert.type';
 import { IAction } from '../common/action.interface';
-
-export interface IAlert {
-  id: string;
-  msg: string;
-  type: string;
-}
 
 const INIT_STATE: IAlert[] = [];
 

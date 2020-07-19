@@ -1,6 +1,7 @@
 import React from 'react';
+import Profile from '../../profile/Profile.component';
 
-const Profile = () => {
+export default () => {
   return (
     <div>
       <p>@Private</p>
@@ -16,8 +17,7 @@ const Profile = () => {
           <li>Records list</li>
         </ul>
       </div>
+      <Profile />
     </div>
   );
 };
-
-export default Profile;
