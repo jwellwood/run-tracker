@@ -1,8 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { PageContainer } from '../../ui/util/PageContainer';
+import { FaUserEdit } from 'react-icons/fa';
+import * as routes from '../../../routes';
 
 const Profile = () => {
+  const links = [
+    {
+      route: routes.EDIT_PROFILE_ROUTE,
+      icon: <FaUserEdit />,
+      text: 'Edit Profile',
+    },
+  ];
   return (
-    <div>
+    <PageContainer>
       <p>@Private</p>
       <p>
         A page with the user's details, including total times/distances and
@@ -11,12 +22,16 @@ const Profile = () => {
       <div>
         Links:
         <ul>
-          <li>Home</li>
-          <li>Edit profile</li>
-          <li>Records list</li>
+          {links.map((link) => (
+            <Link to={link.route}>
+              <li>
+                {link.icon} {link.text}
+              </li>
+            </Link>
+          ))}
         </ul>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 

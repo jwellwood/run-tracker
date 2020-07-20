@@ -1,22 +1,64 @@
 import React from 'react';
 import * as routes from '../../../routes';
-import { Link } from 'react-router-dom';
+import { FaHome, FaChartLine, FaUser, FaCog } from 'react-icons/fa';
+import {
+  NavContainer,
+  NavLinksContainer,
+  NavListItem,
+  NavigationLink,
+  NavLinkIcon,
+  NavLinkText,
+} from './NavigationStyles';
 
 const Navigation: React.FC = () => {
+  const navLinks = [
+    {
+      route: routes.HOME_ROUTE,
+      text: 'Home',
+      icon: <FaHome />,
+    },
+    {
+      route: routes.ALL_RECORDS_ROUTE,
+      text: 'Records',
+      icon: <FaChartLine />,
+    },
+
+    { route: routes.PROFILE_ROUTE, text: 'Profile', icon: <FaUser /> },
+    // {
+    //   route: routes.EDIT_PROFILE_ROUTE,
+    //   text: 'Edit Profile',
+    //   icon: <GrUserSettings />,
+    // },
+
+    // { route: routes.REGISTER_ROUTE, text: 'Register', icon: <GrLogin /> },
+    // {
+    //   route: routes.RESET_PASSWORD_ROUTE,
+    //   text: 'Reset Password',
+    //   icon: <GrLogin />,
+    // },
+    // { route: routes.ADD_RECORD_ROUTE, text: 'Add record', icon: <GrAdd /> },
+    // { route: routes.EDIT_RECORD_ROUTE, text: 'Edit record', icon: <GrEdit /> },
+
+    { route: routes.ABOUT_ROUTE, text: 'Settings', icon: <FaCog /> },
+    // { route: routes.RECORD_ROUTE, text: 'Single record', icon: <GrRun /> },
+  ];
   return (
-    <div>
-      <Link to={routes.HOME_ROUTE}>Home</Link>
-      <Link to={routes.ABOUT_ROUTE}>About</Link>
-      <Link to={routes.PROFILE_ROUTE}>Profile</Link>
-      <Link to={routes.EDIT_PROFILE_ROUTE}>Edit profile</Link>
-      <Link to={routes.REGISTER_ROUTE}>Register</Link>
-      <Link to={routes.SIGN_IN_ROUTE}>Sign in</Link>
-      <Link to={routes.RESET_PASSWORD_ROUTE}>Reset Password</Link>
-      <Link to={routes.ADD_RECORD_ROUTE}>Add record</Link>
-      <Link to={routes.EDIT_RECORD_ROUTE}>Edit record</Link>
-      <Link to={routes.ALL_RECORDS_ROUTE}>All records</Link>
-      <Link to={routes.RECORD_ROUTE}>Single record</Link>
-    </div>
+    <>
+      <NavContainer>
+        <NavLinksContainer>
+          {navLinks.map((link) => (
+            <NavListItem key={link.text}>
+              <NavigationLink exact to={link.route}>
+                <div>
+                  <NavLinkIcon>{link.icon}</NavLinkIcon>
+                </div>
+                <NavLinkText>{link.text}</NavLinkText>
+              </NavigationLink>
+            </NavListItem>
+          ))}
+        </NavLinksContainer>
+      </NavContainer>
+    </>
   );
 };
 

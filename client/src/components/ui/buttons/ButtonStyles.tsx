@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 const btnAnimation = keyframes`
-0% {opacity: 0.5}
+0% {opacity: 0}
 100%{opacity: 1}
 `;
 
