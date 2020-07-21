@@ -1,17 +1,12 @@
 import React from 'react';
+import { PageContainer } from '../../ui/util/PageContainer';
 
 const About: React.FC = () => {
   return (
-    <div>
+    <PageContainer>
       <p>@Public</p>
-      <p>A page with information about how the app works and troubleshooting</p>
-      <div>
-        Links:
-        <ul>
-          <li>Home</li>
-        </ul>
-      </div>
-    </div>
+      Links related to settings. Include logout here.
+    </PageContainer>
   );
 };
 
