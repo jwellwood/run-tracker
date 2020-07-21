@@ -14,13 +14,7 @@ const auth = require('../middleware/auth');
 const Profile = require('../models/Profile.model');
 const User = require('../models/User.model');
 // Messages
-const {
-  NO_PROFILE_EXISTS_MESSAGE,
-  THEME_IS_REQUIRED,
-  PROFILE_NOT_FOUND,
-  PROFILE_DELETED_MESSAGE,
-  SERVER_ERROR_MESSAGE,
-} = require('../messages');
+const { profile_messages, server } = require('../messages');
 
 // GET | api/profile/auth | get profile of current user
 
@@ -30,11 +24,14 @@ router.get('/auth_user', auth, async (req, res) => {
       user: req.user.id,
     }).populate('user', ['username', 'email']);
     if (!profile) {
-      return res.status(400).json({ msg: NO_PROFILE_EXISTS_MESSAGE });
+      return res.status(400).json({
+        errors: [{ msg: profile_messages.NO_PROFILE_EXISTS_MESSAGE }],
+      });
     }
+    res.json(profile);
   } catch (error) {
-    console.error(error.message);
-    res.status(500).json({ errors: [{ msg: SERVER_ERROR_MESSAGE }] });
+    console.error(error);
+    res.status(500).json({ errors: [{ msg: server.SERVER_ERROR_MESSAGE }] });
   }
 });
 
@@ -42,13 +39,16 @@ router.get('/auth_user', auth, async (req, res) => {
 
 router.post(
   '/',
-  [auth, check('hasDarkTheme', THEME_IS_REQUIRED).not().isEmpty()],
+  [
+    auth,
+    check('hasDarkTheme', profile_messages.THEME_IS_REQUIRED).not().isEmpty(),
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-    const { profileImage, hasDarkTheme, hasMetric } = req.body;
+    const { profileImage, hasDarkTheme, hasMetric, location } = req.body;
 
     const profileFields = {};
 
@@ -58,6 +58,7 @@ router.post(
       profileFields.profileImage.public_id = profileImage.public_id;
     profileFields.hasDarkTheme = hasDarkTheme;
     profileFields.hasMetric = hasMetric;
+    profileFields.location = location;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
@@ -77,8 +78,8 @@ router.post(
 
       res.json(profile);
     } catch (error) {
-      console.error(error.message);
-      res.status(500).json({ errors: [{ msg: SERVER_ERROR_MESSAGE }] });
+      console.error(error);
+      res.status(500).json({ errors: [{ msg: server.SERVER_ERROR_MESSAGE }] });
     }
   }
 );
@@ -93,8 +94,8 @@ router.get('/', async (req, res) => {
     ]);
     res.json(profiles);
   } catch (error) {
-    console.error(error.message);
-    res.status(500).json({ errors: [{ msg: SERVER_ERROR_MESSAGE }] });
+    console.error(error);
+    res.status(500).json({ errors: [{ msg: server.SERVER_ERROR_MESSAGE }] });
   }
 });
 
@@ -106,15 +107,19 @@ router.get('/user/:user_id', async (req, res) => {
       user: req.params.user_id,
     }).populate('user', ['username', 'email']);
     if (!profile) {
-      return res.status(400).json({ msg: PROFILE_NOT_FOUND });
+      return res
+        .status(400)
+        .json({ errors: [{ msg: profile_messages.PROFILE_NOT_FOUND }] });
     }
     res.json(profile);
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
     if (error.kind == 'ObjectId') {
-      return res.status(400).json({ msg: PROFILE_NOT_FOUND });
+      return res
+        .status(400)
+        .json({ errors: [{ msg: profile_messages.PROFILE_NOT_FOUND }] });
     }
-    res.status(500).json({ errors: [{ msg: SERVER_ERROR_MESSAGE }] });
+    res.status(500).json({ errors: [{ msg: server.SERVER_ERROR_MESSAGE }] });
   }
 });
 
@@ -124,10 +129,10 @@ router.delete('/', auth, async (req, res) => {
   try {
     await Profile.findOneAndRemove({ user: req.user.id });
     await User.findOneAndRemove({ _id: req.user.id });
-    res.json({ msg: PROFILE_DELETED_MESSAGE });
+    res.json({ errors: [{ msg: profile_messages.PROFILE_DELETED_MESSAGE }] });
   } catch (error) {
-    console.error(error.message);
-    res.status(500).json({ errors: [{ msg: SERVER_ERROR_MESSAGE }] });
+    console.error(error);
+    res.status(500).json({ errors: [{ msg: server.SERVER_ERROR_MESSAGE }] });
   }
 });
 

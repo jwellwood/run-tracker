@@ -1,4 +1,5 @@
 import React from 'react';
+import SignInForm from '../../forms/SignInForm.component';
 
 const SignIn = () => {
   return (
@@ -16,6 +17,7 @@ const SignIn = () => {
           </ul>
         </div>
       </div>
+      <SignInForm />
     </div>
   );
 };

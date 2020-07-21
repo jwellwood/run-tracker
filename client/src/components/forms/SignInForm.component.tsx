@@ -1,17 +1,16 @@
 import React, { useState, FC, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../../store/actions/user.action';
-import { IRegisterUser } from '../../common/registration.type';
+import { signInUser } from '../../store/actions/user.action';
+import { ISignInUser } from '../../common/registration.type';
 import { Redirect } from 'react-router-dom';
 import { PROFILE_ROUTE } from '../../routes';
 import { IUser } from '../../common/user.type';
 
-const RegisterForm: FC = () => {
+const SignInForm: FC = () => {
   const { isAuthenticated } = useSelector((state: IUser) => state.user);
 
   const dispatch = useDispatch();
   const [input, setInput] = useState({
-    username: '',
     email: '',
     password: '',
   });
@@ -26,8 +25,8 @@ const RegisterForm: FC = () => {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const data: IRegisterUser = { ...input };
-    dispatch(registerUser(data));
+    const data: ISignInUser = { ...input };
+    dispatch(signInUser(data));
   };
 
   if (isAuthenticated) {
@@ -37,12 +36,6 @@ const RegisterForm: FC = () => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <input
-          type='text'
-          placeholder='username'
-          name='username'
-          onChange={onChange}
-        />
         <input
           type='email'
           placeholder='email'
@@ -61,4 +54,4 @@ const RegisterForm: FC = () => {
   );
 };
 
-export default RegisterForm;
+export default SignInForm;
