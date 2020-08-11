@@ -1,23 +1,23 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import * as routes from '.';
-import Navigation from '../components/ui/navigation/Navigation';
+import * as routes from 'constants/routes';
+import Navigation from 'components/navigation/Navigation';
 import PrivateRoute from './PrivateRoute';
-import NotFound from '../components/Pages/NotFound';
+import NotFound from 'pages/NotFound';
 
-const Home = lazy(() => import('../components/Pages/Home'));
-const About = lazy(() => import('../components/Pages/About'));
-const Register = lazy(() => import('../components/Pages/Register'));
-const SignIn = lazy(() => import('../components/Pages/SignIn'));
-const ResetPassword = lazy(() => import('../components/Pages/ResetPassword'));
-const Profile = lazy(() => import('../components/Pages/Profile'));
-const EditProfile = lazy(() => import('../components/Pages/EditProfile'));
-const AllRecords = lazy(() => import('../components/Pages/AllRecords'));
-const Record = lazy(() => import('../components/Pages/Record'));
-const AddRecord = lazy(() => import('../components/Pages/AddRecord'));
-const EditRecord = lazy(() => import('../components/Pages/EditRecord'));
+const Home = lazy(() => import('pages/Home'));
+const About = lazy(() => import('pages/About'));
+const Register = lazy(() => import('pages/Register'));
+const SignIn = lazy(() => import('pages/SignIn'));
+const ResetPassword = lazy(() => import('pages/ResetPassword'));
+const Profile = lazy(() => import('pages/Profile'));
+const EditProfile = lazy(() => import('pages/EditProfile'));
+const AllRecords = lazy(() => import('pages/AllRecords'));
+const Record = lazy(() => import('pages/Record'));
+const AddRecord = lazy(() => import('pages/AddRecord'));
+const EditRecord = lazy(() => import('pages/EditRecord'));
 
-function AppRoutes() {
+export const AppRoutes = () => {
   return (
     <Router>
       <Navigation />
@@ -59,6 +59,4 @@ function AppRoutes() {
       </Suspense>
     </Router>
   );
-}
-
-export default AppRoutes;
+};

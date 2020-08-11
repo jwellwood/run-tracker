@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { createProfile } from '../../store/actions/profile.action';
-import { IProfile } from '../../common/profile.type';
+import { createProfile } from 'store/actions/profile.action';
+import { IProfile } from 'common/profile.type';
 
 const CreateUpdateProfileForm = () => {
   // TODO set initial values if profile already exists

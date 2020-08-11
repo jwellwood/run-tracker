@@ -1,0 +1,12 @@
+export const HOME_ROUTE = '/';
+export const ABOUT_ROUTE = '/about';
+export const SIGN_IN_ROUTE = '/sign_in';
+export const REGISTER_ROUTE = '/register';
+export const RESET_PASSWORD_ROUTE = '/reset-password';
+export const PROFILE_ROUTE = '/profile';
+export const EDIT_PROFILE_ROUTE = '/edit_profile';
+export const ALL_RECORDS_ROUTE = '/records';
+export const RECORD_ROUTE = '/records:id';
+export const ADD_RECORD_ROUTE = '/add_record';
+export const EDIT_RECORD_ROUTE = '/records/:id/edit';
+export const NOT_FOUND_ROUTE = '**';

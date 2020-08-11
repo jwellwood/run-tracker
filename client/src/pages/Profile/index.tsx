@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PageContainer } from '../../ui/util/PageContainer';
+import { PageContainer } from 'layout/PageContainer';
 import { FaUserEdit } from 'react-icons/fa';
-import * as routes from '../../../routes';
+import * as routes from 'constants/routes';
 
 const Profile = () => {
   const links = [
@@ -23,7 +23,7 @@ const Profile = () => {
         Links:
         <ul>
           {links.map((link) => (
-            <Link to={link.route}>
+            <Link key={link.route} to={link.route}>
               <li>
                 {link.icon} {link.text}
               </li>
@@ -34,3 +34,5 @@ const Profile = () => {
     </PageContainer>
   );
 };
+
+export default Profile;

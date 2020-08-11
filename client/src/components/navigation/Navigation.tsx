@@ -1,5 +1,5 @@
 import React from 'react';
-import * as routes from '../../../routes';
+import * as routes from 'constants/routes';
 import { FaHome, FaChartLine, FaUser, FaCog } from 'react-icons/fa';
 import {
   NavContainer,
@@ -8,7 +8,7 @@ import {
   NavigationLink,
   NavLinkIcon,
   NavLinkText,
-} from './NavigationStyles';
+} from './navigation.styles';
 
 const Navigation: React.FC = () => {
   const navLinks = [
