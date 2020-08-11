@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import AppTheme from './AppTheme';
-import AppRoutes from './routes/AppRoutes';
+import AppTheme from 'lib/theme/AppTheme';
+import { AppRoutes } from 'routes';
 import { useDispatch } from 'react-redux';
-import { setAuthToken, loadUser } from './store/actions/auth.action';
-import Alert from './components/ui/alerts/Alert.component';
+import { setAuthToken, loadUser } from 'store/actions/auth.action';
+import Alert from 'components/ui/alerts/Alert.component';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

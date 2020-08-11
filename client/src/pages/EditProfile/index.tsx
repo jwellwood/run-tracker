@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateUpdateProfileForm from '../../forms/CreateUpdateProfileForm.component';
+import CreateUpdateProfileForm from 'components/profile/CreateUpdateProfileForm.component';
 
 const EditProfile = () => {
   return (

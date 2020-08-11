@@ -1,10 +1,10 @@
 import React, { useState, FC, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInUser } from '../../store/actions/user.action';
-import { ISignInUser } from '../../common/registration.type';
+import { signInUser } from 'store/actions/user.action';
+import { ISignInUser } from 'common/registration.type';
 import { Redirect } from 'react-router-dom';
-import { PROFILE_ROUTE } from '../../routes';
-import { IUser } from '../../common/user.type';
+import { PROFILE_ROUTE } from 'constants/routes';
+import { IUser } from 'common/user.type';
 
 const SignInForm: FC = () => {
   const { isAuthenticated } = useSelector((state: IUser) => state.user);

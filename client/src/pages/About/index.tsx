@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageContainer } from '../../ui/util/PageContainer';
+import { PageContainer } from 'layout/PageContainer';
 
 const About: React.FC = () => {
   return (

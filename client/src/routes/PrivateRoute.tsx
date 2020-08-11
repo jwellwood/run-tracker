@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { IUser } from '../common/user.type';
 import { Route, Redirect } from 'react-router-dom';
-import * as routes from '.';
+import * as routes from 'constants/routes';
 
 const PrivateRoute: React.FC<{
   component: React.FC;

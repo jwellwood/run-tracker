@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as routes from '../../../routes';
-import { PageContainer } from '../../ui/util/PageContainer';
+import * as routes from 'constants/routes';
+import { PageContainer } from 'layout/PageContainer';
 import { FaPlus, FaEdit, FaRunning } from 'react-icons/fa';
 
 const AllRecords = () => {
@@ -27,7 +27,7 @@ const AllRecords = () => {
         Links:
         <ul>
           {links.map((link) => (
-            <li>
+            <li key={link.route}>
               <Link to={link.route}>
                 {link.icon} {link.text}
               </Link>

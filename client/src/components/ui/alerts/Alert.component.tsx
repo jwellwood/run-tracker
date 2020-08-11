@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAlert } from '../../../common/alert.type';
+import { IAlert } from 'common/alert.type';
 import { useSelector } from 'react-redux';
 
 const Alert: React.FC = () => {

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserProfile } from '../../store/actions/profile.action';
+import { getUserProfile } from 'store/actions/profile.action';
 
 import Spinner from '../ui/spinners/Spinner.component';
-import { IUser } from '../../common/user.type';
+import { IUser } from 'common/user.type';
 import { Link } from 'react-router-dom';
-import { EDIT_PROFILE_ROUTE } from '../../routes';
-import { IProfileState } from '../../common/profile.type';
+import { EDIT_PROFILE_ROUTE } from 'constants/routes';
+import { IProfileState } from 'common/profile.type';
 
 const Profile = () => {
   const { user } = useSelector((state: IUser) => state.user);
