@@ -1,8 +1,9 @@
 import React from 'react';
+import { PageContainer } from 'layout';
 
 const ResetPassword = () => {
   return (
-    <div>
+    <PageContainer>
       <p>@Non-auth</p>
       <p>A form to enter an email address to send a reset password email</p>
       <div>
@@ -12,7 +13,7 @@ const ResetPassword = () => {
           <li>Sign in</li>
         </ul>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 

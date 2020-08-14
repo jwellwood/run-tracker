@@ -1,8 +1,9 @@
 import React from 'react';
+import { PageContainer } from 'layout';
 
 const EditRecord = () => {
   return (
-    <div>
+    <PageContainer>
       <p>@Private</p>
       <p>
         A form to edit the details of an existing record: date / time, distance,
@@ -18,7 +19,7 @@ const EditRecord = () => {
           <li>All records</li>
         </ul>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 

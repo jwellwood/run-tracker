@@ -1,24 +1,16 @@
 import React from 'react';
 import SignInForm from 'components/registration/SignInForm.component';
+import { PageContainer } from 'layout';
+import { SIGN_IN_TITLE } from 'constants/page-titles';
 
 const SignIn = () => {
   return (
-    <div>
-      <div>
-        <p>@Non-auth</p>
-        <p>A form to retrieve validate credentials and allow access to site</p>
-        <div>
-          Links:
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Register</li>
-            <li>Forgot password</li>
-          </ul>
-        </div>
-      </div>
+    <PageContainer
+      title={SIGN_IN_TITLE.title}
+      subtitle={SIGN_IN_TITLE.subtitle}
+    >
       <SignInForm />
-    </div>
+    </PageContainer>
   );
 };
 

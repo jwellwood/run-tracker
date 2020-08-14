@@ -1,10 +1,14 @@
 import React from 'react';
-import CreateUpdateProfileForm from 'components/profile/CreateUpdateProfileForm.component';
+import UpdateProfileForm from 'components/forms/UpdateProfileForm.component';
+import { PageContainer } from 'layout';
+import { EDIT_PROFILE_TITLE } from 'constants/page-titles';
 
 const EditProfile = () => {
   return (
-    <div>
-      <p>@Private</p>
+    <PageContainer
+      title={EDIT_PROFILE_TITLE.title}
+      subtitle={EDIT_PROFILE_TITLE.subtitle}
+    >
       <p>
         A page with options to change email, password, username, location, and
         delete account
@@ -12,15 +16,9 @@ const EditProfile = () => {
       <p>
         <em>Future: add/edit 'friends' list</em>
       </p>
-      <div>
-        Links:
-        <ul>
-          <li>Home</li>
-          <li>Profile</li>
-        </ul>
-      </div>
-      <CreateUpdateProfileForm />
-    </div>
+
+      <UpdateProfileForm />
+    </PageContainer>
   );
 };
 

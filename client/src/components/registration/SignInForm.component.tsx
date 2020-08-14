@@ -3,8 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signInUser } from 'store/actions/user.action';
 import { ISignInUser } from 'common/registration.type';
 import { Redirect } from 'react-router-dom';
-import { PROFILE_ROUTE } from 'constants/routes';
+import {
+  PROFILE_ROUTE,
+  RESET_PASSWORD_ROUTE,
+  REGISTER_ROUTE,
+} from 'constants/routes';
 import { IUser } from 'common/user.type';
+import { Form, Button } from 'react-bootstrap';
+import LinkButton from 'components/ui/buttons/LinkButton';
 
 const SignInForm: FC = () => {
   const { isAuthenticated } = useSelector((state: IUser) => state.user);
@@ -34,23 +40,25 @@ const SignInForm: FC = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
-          type='email'
-          placeholder='email'
-          name='email'
-          onChange={onChange}
-        />
-        <input
-          type='password'
-          placeholder='password'
-          name='password'
-          onChange={onChange}
-        />
-        <button type='submit'>Submit</button>
-      </form>
-    </div>
+    <Form onSubmit={onSubmit}>
+      <Form.Group>
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type='email' name='email' onChange={onChange} />
+        <Form.Label>Password</Form.Label>
+        <Form.Control type='password' name='password' onChange={onChange} />
+        <Button variant='primary' type='submit'>
+          Submit
+        </Button>
+        <Form.Text>
+          Don't have an account?{' '}
+          <LinkButton link={REGISTER_ROUTE}>Register</LinkButton>
+        </Form.Text>
+        <Form.Text>
+          Forgot your password?{' '}
+          <LinkButton link={RESET_PASSWORD_ROUTE}>Reset Password</LinkButton>
+        </Form.Text>
+      </Form.Group>
+    </Form>
   );
 };
 

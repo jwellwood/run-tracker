@@ -1,14 +1,15 @@
 import React from 'react';
 import * as routes from 'constants/routes';
 import { FaHome, FaChartLine, FaUser, FaCog } from 'react-icons/fa';
-import {
-  NavContainer,
-  NavLinksContainer,
-  NavListItem,
-  NavigationLink,
-  NavLinkIcon,
-  NavLinkText,
-} from './navigation.styles';
+// import {
+//   NavContainer,
+//   NavLinksContainer,
+//   NavListItem,
+//   NavigationLink,
+//   NavLinkIcon,
+//   NavLinkText,
+// } from './navigation.styles';
+import { Navbar, Nav } from 'react-bootstrap';
 
 const Navigation: React.FC = () => {
   const navLinks = [
@@ -22,29 +23,22 @@ const Navigation: React.FC = () => {
       text: 'Records',
       icon: <FaChartLine />,
     },
-
     { route: routes.PROFILE_ROUTE, text: 'Profile', icon: <FaUser /> },
-    // {
-    //   route: routes.EDIT_PROFILE_ROUTE,
-    //   text: 'Edit Profile',
-    //   icon: <GrUserSettings />,
-    // },
-
-    // { route: routes.REGISTER_ROUTE, text: 'Register', icon: <GrLogin /> },
-    // {
-    //   route: routes.RESET_PASSWORD_ROUTE,
-    //   text: 'Reset Password',
-    //   icon: <GrLogin />,
-    // },
-    // { route: routes.ADD_RECORD_ROUTE, text: 'Add record', icon: <GrAdd /> },
-    // { route: routes.EDIT_RECORD_ROUTE, text: 'Edit record', icon: <GrEdit /> },
-
     { route: routes.ABOUT_ROUTE, text: 'Settings', icon: <FaCog /> },
-    // { route: routes.RECORD_ROUTE, text: 'Single record', icon: <GrRun /> },
   ];
   return (
     <>
-      <NavContainer>
+      <Navbar bg='dark' variant='dark'>
+        <Navbar.Brand href='/'>Run Tracker</Navbar.Brand>
+        <Nav className='mr-auto'>
+          {navLinks.map((link) => (
+            <Nav.Link key={link.route} href={link.route}>
+              {link.icon}
+            </Nav.Link>
+          ))}
+        </Nav>
+      </Navbar>
+      {/* <NavContainer>
         <NavLinksContainer>
           {navLinks.map((link) => (
             <NavListItem key={link.text}>
@@ -57,7 +51,7 @@ const Navigation: React.FC = () => {
             </NavListItem>
           ))}
         </NavLinksContainer>
-      </NavContainer>
+      </NavContainer> */}
     </>
   );
 };

@@ -1,8 +1,9 @@
 import React from 'react';
+import { PageContainer } from 'layout';
 
 const AddRecord = () => {
   return (
-    <div>
+    <PageContainer>
       <p>@Private</p>
       <p>
         A form to add the details of a new record: date / time, distance, time,
@@ -18,7 +19,7 @@ const AddRecord = () => {
           <li>All records</li>
         </ul>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 
