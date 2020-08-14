@@ -4,3 +4,9 @@ export interface IUser {
   loading: boolean;
   user: any;
 }
+
+export interface IUserDetails {
+  _id: string;
+  username: string;
+  email: string;
+}

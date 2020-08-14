@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as routes from 'constants/routes';
-import { PageContainer } from 'layout/PageContainer';
+import { PageContainer } from 'layout';
 import { FaPlus, FaEdit, FaRunning } from 'react-icons/fa';
 
 const AllRecords = () => {

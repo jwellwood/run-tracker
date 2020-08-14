@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageContainer } from 'layout/PageContainer';
+import { PageContainer } from 'layout';
 
 const About: React.FC = () => {
   return (

@@ -1,23 +1,16 @@
 import React from 'react';
 import RegisterForm from 'components/registration/RegisterForm.component';
+import { PageContainer } from 'layout';
+import { REGISTER_TITLE } from 'constants/page-titles';
 
 const Register = () => {
   return (
-    <div>
-      <div>
-        <p>@Non-auth</p>
-        <p>A form to allow registration to the DB</p>
-        <div>
-          Links:
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Sign in</li>
-          </ul>
-        </div>
-      </div>
+    <PageContainer
+      title={REGISTER_TITLE.title}
+      subtitle={REGISTER_TITLE.subtitle}
+    >
       <RegisterForm />
-    </div>
+    </PageContainer>
   );
 };
 

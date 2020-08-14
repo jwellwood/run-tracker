@@ -1,8 +1,9 @@
 import React from 'react';
 import { IAlert } from 'common/alert.type';
 import { useSelector } from 'react-redux';
+import { Toast } from 'react-bootstrap';
 
-const Alert: React.FC = () => {
+const CustomAlert: React.FC = () => {
   // TODO type this properly
   const alerts = useSelector((state: any) => state.alert);
 
@@ -13,12 +14,20 @@ const Alert: React.FC = () => {
     alerts.map((alert: IAlert) => {
       const { msg, type } = alert;
       return (
-        <div key={alert.id}>
-          <p style={{ color: type === 'success' ? 'green' : 'red' }}>{msg}</p>
-        </div>
+        <Toast
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            color: type === 'success' ? 'green' : 'red',
+          }}
+          key={alert.id}
+        >
+          <Toast.Body>{msg}</Toast.Body>
+        </Toast>
       );
     })
   );
 };
 
-export default Alert;
+export default CustomAlert;

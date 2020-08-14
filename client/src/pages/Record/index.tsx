@@ -1,8 +1,9 @@
 import React from 'react';
+import { PageContainer } from 'layout';
 
 const Record = () => {
   return (
-    <div>
+    <PageContainer>
       <p>@Private</p>
       <p>
         Specific details of a record including an edit button and: date/time,
@@ -17,7 +18,7 @@ const Record = () => {
           <li>All records</li>
         </ul>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 
