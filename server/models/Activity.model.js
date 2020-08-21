@@ -1,38 +1,39 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// user, recordDate, recordHour, recordDistance, recordDuration, recordLocation
-
-const recordSchema = new Schema(
+const activitySchema = new Schema(
   {
     user: {
       type: Schema.Types.ObjectId,
       ref: 'user',
     },
-    recordDate: {
+    activityName: {
+      type: String,
+      required: true,
+      default: '',
+    },
+    activityDate: {
       type: Date,
       required: true,
     },
-    recordHour: {
+    activityTime: {
       type: String,
-      required: false,
     },
-    recordDistance: {
+    activityDistance: {
       type: String,
       required: true,
       default: 0,
     },
-    recordDuration: {
+    activityDuration: {
       type: String,
       required: true,
-      default: '0:00',
+      default: '00:00',
     },
-    recordLocation: {
+    activityLocation: {
       type: String,
-      required: false,
     },
   },
   { timestamps: true }
 );
 
-module.exports = Record = mongoose.model('record', recordSchema);
+module.exports = Activity = mongoose.model('activity', activitySchema);

@@ -14,18 +14,18 @@ const profileSchema = new Schema(
     profileImage: {
       url: {
         type: String,
-        default: '',
+        default: 'default',
       },
       publicId: {
         type: String,
-        default: 0,
+        default: 'default',
       },
     },
-    hasDarkTheme: {
+    darkTheme: {
       type: Boolean,
       default: false,
     },
-    hasMetric: {
+    metricUnits: {
       type: Boolean,
       default: true,
     },
