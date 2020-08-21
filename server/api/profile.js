@@ -41,14 +41,14 @@ router.post(
   '/',
   [
     auth,
-    check('hasDarkTheme', profile_messages.THEME_IS_REQUIRED).not().isEmpty(),
+    check('darkTheme', profile_messages.THEME_IS_REQUIRED).not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-    const { profileImage, hasDarkTheme, hasMetric, location } = req.body;
+    const { profileImage, darkTheme, metricUnits, location } = req.body;
 
     const profileFields = {};
 
@@ -56,8 +56,8 @@ router.post(
     if (profileImage) profileFields.profileImage.url = profileImage.url;
     if (profileImage)
       profileFields.profileImage.public_id = profileImage.public_id;
-    profileFields.hasDarkTheme = hasDarkTheme;
-    profileFields.hasMetric = hasMetric;
+    profileFields.darkTheme = darkTheme;
+    profileFields.metricUnits = metricUnits;
     profileFields.location = location;
 
     try {
