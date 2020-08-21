@@ -1,7 +1,7 @@
 import React from 'react';
-import UpdateProfileForm from 'components/forms/UpdateProfileForm.component';
 import { PageContainer } from 'layout';
 import { EDIT_PROFILE_TITLE } from 'constants/page-titles';
+import UpdateProfileForm from 'components/forms/UpdateProfileForm';
 
 const EditProfile = () => {
   return (
@@ -9,13 +9,7 @@ const EditProfile = () => {
       title={EDIT_PROFILE_TITLE.title}
       subtitle={EDIT_PROFILE_TITLE.subtitle}
     >
-      <p>
-        A page with options to change email, password, username, location, and
-        delete account
-      </p>
-      <p>
-        <em>Future: add/edit 'friends' list</em>
-      </p>
+      <p>TODO: email, password, location, units, theme, delete, friends list</p>
 
       <UpdateProfileForm />
     </PageContainer>

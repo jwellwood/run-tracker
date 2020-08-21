@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { EDIT_PROFILE_ROUTE } from 'constants/routes';
+import { CREATE_PROFILE_ROUTE } from 'constants/routes';
 import ProfileSettings from './ProfileSettings.component';
-import { IProfile } from 'common/profile.type';
+import { Button } from 'react-bootstrap';
 
 interface Props {
   user: {
     username: string;
     email: string;
   };
-  profile: IProfile;
+  profile: any;
   onSignOut: () => void;
 }
 
@@ -18,11 +18,12 @@ const Profile: React.FC<Props> = ({ user, profile, onSignOut }) => {
     <div>
       <h1>user: {user.username}</h1>
       <h1>email: {user.email}</h1>
-      {profile ? (
-        <ProfileSettings profile={profile} onSignOut={onSignOut} />
+      {profile._id ? (
+        <ProfileSettings profile={profile} />
       ) : (
-        <Link to={EDIT_PROFILE_ROUTE}>create profile</Link>
+        <Link to={CREATE_PROFILE_ROUTE}>create profile</Link>
       )}
+      <Button onClick={onSignOut}>Logout</Button>
     </div>
   );
 };
