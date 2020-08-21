@@ -1,6 +1,6 @@
 import React, { useState, FC, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInUser } from 'store/actions/user.action';
+import { signInUser } from 'store/user/user.action';
 import { ISignInUser } from 'common/registration.type';
 import { Redirect } from 'react-router-dom';
 import {

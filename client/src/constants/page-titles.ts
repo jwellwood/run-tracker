@@ -17,7 +17,11 @@ export const PROFILE_TITLE = {
   title: 'Profile',
 };
 
+export const CREATE_PROFILE_TITLE = {
+  title: 'Create Profile',
+  subtitle: 'Create a user profile personal to you',
+};
 export const EDIT_PROFILE_TITLE = {
   title: 'Update Profile',
-  subtitle: 'Create / update your profile',
+  subtitle: 'Make changes to your user profile',
 };

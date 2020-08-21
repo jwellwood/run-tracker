@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { IProfileState } from 'common/profile.type';
 import { IUser } from 'common/user.type';
-import { getUserProfile } from 'store/actions/profile.action';
-import { signOutUser } from 'store/actions/user.action';
-import { Spinner } from 'react-bootstrap';
+import { getUserProfile } from 'store/profile/profile.action';
+import { signOutUser } from 'store/user/user.action';
 import Profile from './Profile.component';
+import CustomSpinner from 'components/ui/spinners/Spinner.component';
+import { RootState } from 'store';
 
 export default () => {
   const { user } = useSelector((state: IUser) => state.user);
-  const { profile, loading } = useSelector(
-    (state: IProfileState) => state.profile
-  );
+  const { profile, loading } = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserProfile());
@@ -25,5 +23,5 @@ export default () => {
     <Profile user={user} profile={profile} onSignOut={onSignOut} />
   ) : null;
 
-  return loading ? <Spinner animation='grow' /> : profileView;
+  return loading ? <CustomSpinner /> : profileView;
 };

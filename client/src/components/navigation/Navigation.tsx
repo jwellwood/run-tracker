@@ -10,8 +10,10 @@ import { FaHome, FaChartLine, FaUser, FaCog } from 'react-icons/fa';
 //   NavLinkText,
 // } from './navigation.styles';
 import { Navbar, Nav } from 'react-bootstrap';
+// import { useAuth } from 'hooks';
 
 const Navigation: React.FC = () => {
+  // const { isAuth } = useAuth();
   const navLinks = [
     {
       route: routes.HOME_ROUTE,
@@ -19,8 +21,8 @@ const Navigation: React.FC = () => {
       icon: <FaHome />,
     },
     {
-      route: routes.ALL_RECORDS_ROUTE,
-      text: 'Records',
+      route: routes.ALL_ACTIVITIES_ROUTE,
+      text: 'Activities',
       icon: <FaChartLine />,
     },
     { route: routes.PROFILE_ROUTE, text: 'Profile', icon: <FaUser /> },
